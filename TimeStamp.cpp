@@ -31,8 +31,7 @@ bool TimeStamp::bSetTimeStamp(int i_year, int i_month, int i_day, int i_hour, in
 	{
 		bSetDate(i_year, i_month, i_day);
 		cout << dTime << endl;
-		dTime += 60 * (i_hour * 60 + i_minute);
-		cout << "Time set (seconds): " << dTime << endl;
+		dTime += MINUTE_IN_SEC * (i_hour * MINUTE_IN_SEC + i_minute);
 		return true;
 	}
 	else return false;
@@ -40,25 +39,25 @@ bool TimeStamp::bSetTimeStamp(int i_year, int i_month, int i_day, int i_hour, in
 
 bool TimeStamp::bIsHourValid(int i_hour, int i_minute)
 {
-	return i_hour >= 0 && i_hour < 24 && i_minute >= 0 && i_minute < 60;
+	return i_hour >= 0 && i_hour < HOURS_PER_DAY && i_minute >= 0 && i_minute < MINUTE_IN_SEC;
 }
 
 int TimeStamp::iMinuteDifference(TimeStamp & c_time_stamp)
 {
-	return abs((dTime - c_time_stamp.dTime)/60);
+	return abs((dTime - c_time_stamp.dTime)/ MINUTE_IN_SEC);
 }
 
 void TimeStamp::vAddHours(int i_hour)
 {
-	dTime += i_hour * 60 * 60;
+	dTime += i_hour * HOUR_IN_SEC;
 }
 
 int TimeStamp::iGetHour()
 {
-	return ((int)dTime % 86400) / (60 * 60);
+	return ((int)dTime % DAY_IN_SEC) / (HOUR_IN_SEC);
 }
 
 int TimeStamp::iGetMinute()
 {
-	return ((int)dTime % 3600) / 60;;
+	return ((int)dTime % HOUR_IN_SEC) / MINUTE_IN_SEC;;
 }
