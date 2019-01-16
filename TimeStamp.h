@@ -16,6 +16,8 @@ public:
 	int iMinuteDifference(TimeStamp & c_time_stamp);
 	void vAddHours(int i_hour);
 
+	int iGetHour();
+	int iGetMinute();
 private:
 	int pszeniczne;
 };

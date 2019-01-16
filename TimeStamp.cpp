@@ -52,3 +52,13 @@ void TimeStamp::vAddHours(int i_hour)
 {
 	dTime += i_hour * 60 * 60;
 }
+
+int TimeStamp::iGetHour()
+{
+	return ((int)dTime % 86400) / (60 * 60);
+}
+
+int TimeStamp::iGetMinute()
+{
+	return ((int)dTime % 3600) / 60;;
+}
