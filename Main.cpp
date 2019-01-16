@@ -18,8 +18,8 @@ int main()
 	d1.bSetDate(1970, 11, 30);
 	TimeStamp ts1;
 	TimeStamp ts2;
-	ts1.bSetTimeStamp(1970, 11, 30, 23, 25);
-	ts2.bSetTimeStamp(1970, 11, 30, 15, 03);
+	ts1.bSetTimeStamp(1980, 11, 30, 1, 59);
+	ts2.bSetTimeStamp(2003, 12, 1, 15, 03);
 	cout << (ts1 == ts2) << endl;
 	cout << (ts1 > ts2) << endl;
 	cout << (ts1 < ts2) << endl;
@@ -37,7 +37,7 @@ int main()
 
 	d1.bSetDate(1970, 3, 1);
 	cout << d1.iGetYear() << "____________________________" << d1.iGetMonth() << "  :  " << d1.iGetDay() << endl;
-	d1.bSetDate(1972, 02, 29);
+	d1.bSetDate(2016, 12, 29);
 	cout << d1.iGetYear() << "____________________________" << d1.iGetMonth() << "  :  " << d1.iGetDay() << endl;
 	d1.bSetDate(2003, 12, 31);
 	cout << d1.iGetYear() << "____________________________" << d1.iGetMonth() << "  :  " << d1.iGetDay() << endl;

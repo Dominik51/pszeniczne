@@ -84,11 +84,12 @@ int Date::iGetMonth()
 
 int Date::iGetDay()
 {
-	double dTimePassed = (iGetYear() - START_YEAR) * DAYS_PER_YEAR * DAY_IN_SEC + iGetLeapYearsFrom1970(iGetYear() - 1) * DAY_IN_SEC;
+	double dTimePassed = (iGetYear() - START_YEAR) * DAYS_PER_YEAR * DAY_IN_SEC + iGetLeapYearsFrom1970(iGetYear()) * DAY_IN_SEC;
 	for(int i = 1; i < iGetMonth(); i++)
 	{
 		dTimePassed += iGetLengthOfMonth(iGetYear(), i) * DAY_IN_SEC;
 	}
+	cout << dTime << " : " << dTimePassed << endl;
 	return (dTime - dTimePassed) / DAY_IN_SEC + 1;
 }
 

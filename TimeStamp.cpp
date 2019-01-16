@@ -30,7 +30,6 @@ bool TimeStamp::bSetTimeStamp(int i_year, int i_month, int i_day, int i_hour, in
 	if (bIsHourValid(i_hour, i_minute) && bIsDateValid(i_year, i_month, i_day))
 	{
 		bSetDate(i_year, i_month, i_day);
-		cout << dTime << endl;
 		dTime += MINUTE_IN_SEC * (i_hour * MINUTE_IN_SEC + i_minute);
 		return true;
 	}
