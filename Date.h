@@ -57,14 +57,15 @@ public:
 	bool bSetDate(int i_year, int i_month, int i_day);
 	int iDayDifference(Date &c_date);
 	void vAddDays(int i_days);
-
+	
 	int iGetYear();
 	int iGetMonth();
 	int iGetDay();
 
 protected:
 
-	int iGetLeapYearsFrom1970(int i_year);
+	int iGetLeapYearsFromStartYear(int i_year);
+	int iGetPreviousLeapYear(int i_year);
 	int iGetLengthOfMonth(int i_year, int i_month);
 	bool bIsDateValid(int i_year, int i_month, int i_day);
 	double dTime; // seconds

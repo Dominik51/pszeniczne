@@ -35,7 +35,7 @@ bool Date::bSetDate(int i_year, int i_month, int i_day)
 	if (bIsDateValid(i_year, i_month, i_day))
 	{
 		double dTimeInSeconds = (i_year - START_YEAR) * DAYS_PER_YEAR * DAY_IN_SEC;
-		int iLeapDays = iGetLeapYearsFrom1970(i_year);
+		int iLeapDays = iGetLeapYearsFromStartYear(i_year);
 	    dTimeInSeconds += iLeapDays * DAY_IN_SEC;
 		for (int i = 1; i < i_month; i++)
 		{
@@ -63,7 +63,7 @@ void Date::vAddDays(int i_days)
 int Date::iGetYear()
 {
 	int iYear = START_YEAR + (dTime / (DAYS_PER_YEAR * DAY_IN_SEC));
-	int iLeapDays = iGetLeapYearsFrom1970(iYear);
+	int iLeapDays = iGetLeapYearsFromStartYear(iYear);
 	if (dTime < (iYear - START_YEAR) * DAYS_PER_YEAR * DAY_IN_SEC + iLeapDays * DAY_IN_SEC)
 	{
 		iYear--;
@@ -73,7 +73,7 @@ int Date::iGetYear()
 
 int Date::iGetMonth()
 {
-	double dTimePassed = (iGetYear() - START_YEAR) * DAYS_PER_YEAR * DAY_IN_SEC + iGetLeapYearsFrom1970(iGetYear()) * DAY_IN_SEC;
+	double dTimePassed = (iGetYear() - START_YEAR) * DAYS_PER_YEAR * DAY_IN_SEC + iGetLeapYearsFromStartYear(iGetYear()) * DAY_IN_SEC;
 	int iMonth = 0;
 	while (dTimePassed <= dTime)
 	{
@@ -84,19 +84,23 @@ int Date::iGetMonth()
 
 int Date::iGetDay()
 {
-	double dTimePassed = (iGetYear() - START_YEAR) * DAYS_PER_YEAR * DAY_IN_SEC + iGetLeapYearsFrom1970(iGetYear()) * DAY_IN_SEC;
+	double dTimePassed = (iGetYear() - START_YEAR) * DAYS_PER_YEAR * DAY_IN_SEC + iGetLeapYearsFromStartYear(iGetYear()) * DAY_IN_SEC;
 	for(int i = 1; i < iGetMonth(); i++)
 	{
 		dTimePassed += iGetLengthOfMonth(iGetYear(), i) * DAY_IN_SEC;
 	}
-	cout << dTime << " : " << dTimePassed << endl;
 	return (dTime - dTimePassed) / DAY_IN_SEC + 1;
 }
 
-int Date::iGetLeapYearsFrom1970(int i_year)
+int Date::iGetLeapYearsFromStartYear(int i_year)
 {
-	int iLeapYears = abs((i_year - START_YEAR - 1) / 4);
+	int iLeapYears = (i_year - iGetPreviousLeapYear(START_YEAR) + 1) / 4;
 	return iLeapYears;
+}
+
+int Date::iGetPreviousLeapYear(int i_year)
+{
+	return i_year / 4 * 4;
 }
 
 int Date::iGetLengthOfMonth(int i_year, int i_month)
